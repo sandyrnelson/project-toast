@@ -17,7 +17,8 @@ function RadioButton({ name, options, label = '', selected, setter }) {
 									id={`${name}-${option}`}
 									type='radio'
 									name={name}
-									value={selected === option}
+									value={option}
+									checked={selected === option}
 									onChange={(event) => {
 										setter(event.target.value);
 									}}
