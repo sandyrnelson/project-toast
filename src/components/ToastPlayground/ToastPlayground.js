@@ -15,18 +15,6 @@ function ToastPlayground() {
 	const [type, setType] = useState('notice');
 	const [message, setMessage] = React.useState('');
 
-	useEffect(() => {
-		function handleKeyDown(event) {
-			if (event.key === 'Escape') {
-				setToasts((current) => []);
-			}
-		}
-		window.addEventListener('keydown', handleKeyDown);
-		return () => {
-			window.removeEventListener('keydown', handleKeyDown);
-		};
-	}, []);
-
 	function createToast() {
 		const id = crypto.randomUUID();
 		setToasts([...toasts, { id: id, content: message, type: type }]);
