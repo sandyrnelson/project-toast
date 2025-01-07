@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './RadioButton.module.css';
 
-function RadioButton({ name, options, label = '', selected, setter }) {
+function RadioButton({ name, options, selected, setter, label = '' }) {
 	return (
 		<>
 			{label !== '' && <div className={styles.label}>{label}</div>}
