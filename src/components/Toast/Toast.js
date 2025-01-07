@@ -30,14 +30,18 @@ function Toast({ id, content, type }) {
 			<div className={styles.iconContainer}>
 				<IconTag size={24} />
 			</div>
-			<p className={styles.content}>{content}</p>
+			<p className={styles.content}>
+				<VisuallyHidden> {type} </VisuallyHidden>
+				{content}
+			</p>
 			<button
 				className={styles.closeButton}
+				aria-label='Dismiss message'
+				aria-live='off'
 				onClick={() => {
 					setToasts((current) => current.filter((toast) => toast.id !== id));
 				}}>
 				<X size={24} />
-				<VisuallyHidden>Dismiss message</VisuallyHidden>
 			</button>
 		</div>
 	);
