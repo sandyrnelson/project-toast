@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 
 import Button from '../Button';
 import RadioButton from '../RadioButton';
-
+import TextArea from '../TextArea';
 import styles from './ToastPlayground.module.css';
 
 const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'];
 
 function ToastPlayground() {
 	const [type, setType] = useState('notice');
+	const [message, setMessage] = React.useState('');
+
 	return (
 		<div className={styles.wrapper}>
 			<header>
@@ -18,7 +20,13 @@ function ToastPlayground() {
 
 			<div className={styles.controlsWrapper}>
 				<div className={styles.row}>
-					<label
+					<TextArea
+						id='message'
+						label='Message'
+						value={message}
+						setter={setMessage}
+					/>
+					{/* <label
 						htmlFor='message'
 						className={styles.label}
 						style={{ alignSelf: 'baseline' }}>
@@ -26,7 +34,7 @@ function ToastPlayground() {
 					</label>
 					<div className={styles.inputWrapper}>
 						<textarea id='message' className={styles.messageInput} />
-					</div>
+					</div> */}
 				</div>
 				<div className={styles.row}>
 					<RadioButton
