@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, use } from 'react';
+
+import { ToastContext } from '../ToastProvider';
 
 import Button from '../Button';
 import RadioButton from '../RadioButton';
@@ -11,7 +13,7 @@ const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'];
 function ToastPlayground() {
 	const [type, setType] = useState('notice');
 	const [message, setMessage] = React.useState('');
-	const [toasts, setToasts] = React.useState([]);
+	const { toasts, setToasts } = use(ToastContext);
 
 	function createToast() {
 		const id = crypto.randomUUID();
@@ -25,7 +27,7 @@ function ToastPlayground() {
 				<img alt='Cute toast mascot' src='/toast.png' />
 				<h1>Toast Playground</h1>
 			</header>
-			<ToastShelf toasts={toasts} setToasts={setToasts} />
+			<ToastShelf/>
 			<div className={styles.controlsWrapper}>
 				<div className={styles.row}>
 					<TextArea
