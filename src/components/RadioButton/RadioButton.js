@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './RadioButton.module.css';
 
-function RadioButton({ name, options, label = '', selected, setter }) {
+function RadioButton({ name, options, selected, setter, label = '' }) {
 	return (
 		<>
 			{label !== '' && <div className={styles.label}>{label}</div>}
@@ -17,7 +17,8 @@ function RadioButton({ name, options, label = '', selected, setter }) {
 									id={`${name}-${option}`}
 									type='radio'
 									name={name}
-									value={selected === option}
+									value={option}
+									checked={selected === option}
 									onChange={(event) => {
 										setter(event.target.value);
 									}}
