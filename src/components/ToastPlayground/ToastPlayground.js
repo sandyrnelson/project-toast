@@ -1,4 +1,4 @@
-import React, { useState, use } from 'react';
+import React, { useState, use, useEffect } from 'react';
 
 import { ToastContext } from '../ToastProvider';
 
@@ -11,9 +11,21 @@ import ToastShelf from '../ToastShelf/ToastShelf';
 const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'];
 
 function ToastPlayground() {
+	const { toasts, setToasts } = use(ToastContext);
 	const [type, setType] = useState('notice');
 	const [message, setMessage] = React.useState('');
-	const { toasts, setToasts } = use(ToastContext);
+
+	useEffect(() => {
+		function handleKeyDown(event) {
+			if (event.key === 'Escape') {
+				setToasts((current) => []);
+			}
+		}
+		window.addEventListener('keydown', handleKeyDown);
+		return () => {
+			window.removeEventListener('keydown', handleKeyDown);
+		};
+	}, []);
 
 	function createToast() {
 		const id = crypto.randomUUID();
